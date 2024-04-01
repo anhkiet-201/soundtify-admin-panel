@@ -1,21 +1,29 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+import { apiRepository } from '../../di/injector';
+import { Song } from '../../types/song';
+import { millisecondsToHms } from '../../common/utils/date_time'
+const listSong = ref<Song[]>([])
+apiRepository.getAllSong().then((value) => (listSong.value = value))
+</script>
 <template>
     <table class="table table-hover mx-2">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Song ID</th>
+                <th scope="col">Song name</th>
+                <th scope="col">Song duration</th>
+                <th scope="col">Upload time</th>
                 <th scope="col">Handle</th>
                 <th scope="col">Handle</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+            <tr v-for="song in listSong">
+                <th scope="row">{{ song.id}}</th>
+                <td>{{song.name}}</td>
+                <td>{{ millisecondsToHms(song.duration)}}</td>
+                <td>{{new Date(song.uploadTime).toDateString()}}</td>
                 <td>@mdo</td>
                 <td>
                     <div class="d-flex">
@@ -28,16 +36,7 @@
                     </div>
                 </td>
             </tr>
-
-
         </tbody>
     </table>
 </template>
-
-<script>
-export default {
-
-}
-</script>
-
 <style></style>

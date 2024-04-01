@@ -61,10 +61,7 @@
   </div>
 </template>
 
-<script>
-export default {
-    name: "sidebar",
-}
+<script setup lang="ts">
 </script>
 
 <style>
