@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { apiRepository } from '../../di/injector';
 import { Song } from '../../types/song';
 import { millisecondsToHms } from '../../common/utils/date_time'
+const songName = ref("")
 const listSong = ref<Song[]>([])
 apiRepository.getAllSong().then((value) => (listSong.value = value))
 </script>
@@ -19,7 +20,7 @@ apiRepository.getAllSong().then((value) => (listSong.value = value))
             </tr>
         </thead>
         <tbody>
-            <tr v-for="song in listSong">
+            <tr v-bind:key="song" v-for="song in listSong">
                 <th scope="row">{{ song.id}}</th>
                 <td>{{song.name}}</td>
                 <td>{{ millisecondsToHms(song.duration)}}</td>
