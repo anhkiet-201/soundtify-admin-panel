@@ -1,12 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import dashboard from '../View/dashboard.vue'
-import artists_managerment from '../View/artists_managerment.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import dashboard from '../View/dashboard.vue';
+import artists_managerment from '../View/artists_managerment.vue';
 
 const routes = [
     {
         path: '/',
         name: 'dashboard',
-        component: artists_managerment
+        component: dashboard
       },
 ]
 const router = createRouter({

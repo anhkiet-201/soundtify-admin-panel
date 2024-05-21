@@ -27,97 +27,97 @@ export default {
         }
     },
     created(){
-        this.init();
+        // this.init();
     },
     methods:{
-        init(){
-            this.lineChart();
-            this.barChart();
-            this.pieChart();
-        },
-    lineChart() {
-      const ctx = document.getElementById("revenueChart").getContext("2d");
-      new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: this.chartData.map((item) => `Month ${item.month}`),
+    //     init(){
+    //         this.lineChart();
+    //         this.barChart();
+    //         this.pieChart();
+    //     },
+    // lineChart() {
+    //   const ctx = document.getElementById("revenueChart").getContext("2d");
+    //   new Chart(ctx, {
+    //     type: "line",
+    //     data: {
+    //       labels: this.chartData.map((item) => `Month ${item.month}`),
           
           
-          datasets: [
-            {
-              label: "Revenue",
-              backgroundColor: "rgba(115, 134, 213)",
-              borderColor: "#2b2c34",
-              borderWidth: 2,
-              data: this.chartData.map((item) => item.revenue),
-            },
-          ],
-        },
+    //       datasets: [
+    //         {
+    //           label: "Revenue",
+    //           backgroundColor: "rgba(115, 134, 213)",
+    //           borderColor: "#2b2c34",
+    //           borderWidth: 2,
+    //           data: this.chartData.map((item) => item.revenue),
+    //         },
+    //       ],
+    //     },
         
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
-    },
-    barChart() {
-      const ctx = document.getElementById("bar").getContext("2d");
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: this.chartData.map((item) => `Month ${item.month}`),
-          datasets: [
-            { 
-              label: "Revenue",
-              backgroundColor: "rgba(75, 192, 192, 0.2)",
-              borderColor: "rgba(75, 192, 192, 1)",
-              borderWidth: 1,
-              data: this.chartData.map((item) => item.revenue),
-            },
-          ],
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
-    },
-    pieChart() {
-      const ctx = document.getElementById("pie").getContext("2d");
-      new Chart(ctx, {
-        type: "pie",
-        data: {
-          labels: this.chartData.map((item) => `Month ${item.month}`),
-          datasets: [
-            {
-              label: "Revenue",
-              backgroundColor: [
-                "#b91d47",
-                "#00aba9",
-                "#2b5797",
-                "#e8c3b9",
-                "#1e7145",
-              ],
-              borderWidth: 1,
-              data: this.chartData.map((item) => item.revenue),
-            },
-          ],
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
-    },
+    //     options: {
+    //       scales: {
+    //         y: {
+    //           beginAtZero: true,
+    //         },
+    //       },
+    //     },
+    //   });
+    // },
+    // barChart() {
+    //   const ctx = document.getElementById("bar").getContext("2d");
+    //   new Chart(ctx, {
+    //     type: "bar",
+    //     data: {
+    //       labels: this.chartData.map((item) => `Month ${item.month}`),
+    //       datasets: [
+    //         { 
+    //           label: "Revenue",
+    //           backgroundColor: "rgba(75, 192, 192, 0.2)",
+    //           borderColor: "rgba(75, 192, 192, 1)",
+    //           borderWidth: 1,
+    //           data: this.chartData.map((item) => item.revenue),
+    //         },
+    //       ],
+    //     },
+    //     options: {
+    //       scales: {
+    //         y: {
+    //           beginAtZero: true,
+    //         },
+    //       },
+    //     },
+    //   });
+    // },
+    // pieChart() {
+    //   const ctx = document.getElementById("pie").getContext("2d");
+    //   new Chart(ctx, {
+    //     type: "pie",
+    //     data: {
+    //       labels: this.chartData.map((item) => `Month ${item.month}`),
+    //       datasets: [
+    //         {
+    //           label: "Revenue",
+    //           backgroundColor: [
+    //             "#b91d47",
+    //             "#00aba9",
+    //             "#2b5797",
+    //             "#e8c3b9",
+    //             "#1e7145",
+    //           ],
+    //           borderWidth: 1,
+    //           data: this.chartData.map((item) => item.revenue),
+    //         },
+    //       ],
+    //     },
+    //     options: {
+    //       scales: {
+    //         y: {
+    //           beginAtZero: true,
+    //         },
+    //       },
+    //     },
+    //   });
+    // },
     },
 
 }
