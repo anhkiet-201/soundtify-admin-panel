@@ -3,7 +3,7 @@
     <div class="col-lg-2">
       <side-bar style="height: 100vh;"></side-bar>
     </div>
-    <div class="col-lg-10" style="height: 100vh;">
+    <!-- <div class="col-lg-10" style="height: 100vh;">
       <div class="d-flex">
         <div class="left col-5 border-end">
           <form-md></form-md>
@@ -12,8 +12,9 @@
           <table-normal></table-normal>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- <artistManagerment></artistManagerment> -->
+    <router-view/>
   </div>
 </template>
 
