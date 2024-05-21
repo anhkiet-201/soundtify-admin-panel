@@ -6,42 +6,32 @@
     </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded text-white collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-          Home
-        </button>
-        <div class="collapse ms-3" id="home-collapse" style="">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded text-white">Overview</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Updates</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Reports</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded text-white collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+        <router-link :to="'/'">
+        <button class="btn btn-toggle align-items-center rounded text-white collapsed" >
           Dashboard
         </button>
-        <div class="collapse ms-3" id="dashboard-collapse" style="">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded text-white">Overview</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Weekly</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Monthly</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Annually</a></li>
-          </ul>
-        </div>
+      </router-link>
       </li>
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded text-white" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
-          Orders
+        <router-link :to="'/user'">
+        <button class="btn btn-toggle align-items-center rounded text-white collapsed" >
+          Users managerment
         </button>
-        <div class="collapse ms-3" id="orders-collapse" style="">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded text-white">New</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Processed</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Shipped</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Returned</a></li>
-          </ul>
-        </div>
+      </router-link>
+      </li>
+      <li class="mb-1">
+        <router-link :to="'/artist'">
+        <button class="btn btn-toggle align-items-center rounded text-white collapsed" >
+          Artist managerment
+        </button>
+      </router-link>
+      </li>
+      <li class="mb-1">
+        <router-link :to="'/track'">
+        <button class="btn btn-toggle align-items-center rounded text-white collapsed" >
+          track managerment
+        </button>
+      </router-link>
       </li>
       <li class="border-top my-3"></li>
       <li class="mb-1">

@@ -15,20 +15,20 @@
           </tr>
         </thead>
         <tbody v-if="!this.isLoading">
-          <tr :key="song.id" v-for="song in paginatedData">
-            <th>{{ song.id.length }}</th>
-            <td>{{ song.name }}</td>
-            <td>{{ song.artistId }}</td>
+          <tr :key="User.id" v-for="User in paginatedData">
+            <th>{{ User.id.length }}</th>
+            <td>{{ User.name }}</td>
+            <td>{{ User.artistId }}</td>
             <td>
-              <img :src="song.cover" alt="thumbnail-song" class="custom-images" />
+              <img :src="User.cover" alt="thumbnail-User" class="custom-images" />
             </td>
-            <td class="col-2">{{ song.description }}</td>
-            <td>{{ song.duration }}</td>
-            <td>{{ song.listenCount }}</td>
+            <td class="col-2">{{ User.description }}</td>
+            <td>{{ User.duration }}</td>
+            <td>{{ User.listenCount }}</td>
             <td>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                @click="showPopup(song)">
+                @click="showPopup(User)">
                 Update
               </button>
               <!-- Modal -->
@@ -38,16 +38,16 @@
                   <div class="modal-content bg-module">
                     <div class="modal-header">
                       <h5 class="modal-title" id="staticBackdropLabel">
-                        Update Song
+                        Update User
                       </h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form @submit.prevent="updateSong()">
+                      <form @submit.prevent="updateUser()">
                         <div class="row justify-content-center">
                           <div class="row justify-content-center">
-                            <img :src="this.updateSongData.cover" alt="" class="img custom-img-animation" />
-                            <input type="file" name="" id="file" accept="image/*" @change="uploadThumbnailSong" />
+                            <img :src="this.updateUserData.cover" alt="" class="img custom-img-animation" />
+                            <input type="file" name="" id="file" accept="image/*" @change="uploadThumbnailUser" />
                           </div>
                           <div class="row justify-content-center">
                             <!-- Name -->
@@ -55,7 +55,7 @@
                               <div class="border border-dark m-2">
                                 <div class="custom-form">
                                   <input type="text" name="text" autocomplete="off" required
-                                    v-model="this.updateSongData.name" />
+                                    v-model="this.updateUserData.name" />
                                   <label for="text" class="label-name">
                                     <span class="content-name text-dark"> Name </span>
                                   </label>
@@ -67,7 +67,7 @@
                               <div class="border border-dark m-2">
                                 <div class="custom-form">
                                   <input type="text" name="text" autocomplete="off" required
-                                    v-model="this.updateSongData.description" />
+                                    v-model="this.updateUserData.description" />
                                   <label for="text" class="label-name">
                                     <span class="content-name text-dark">
                                       Description
@@ -104,7 +104,7 @@
                 </div>
               </div>
               <!-- Modal end -->
-              <button type="button" class="btn btn-danger" @click="deleteSong(song.id)">
+              <button type="button" class="btn btn-danger" @click="deleteUser(User.id)">
                 delete
               </button>
             </td>
@@ -129,8 +129,8 @@
 
     data() {
       return {
-        songData: [],
-        updateSongData :{},
+        UserData: [],
+        updateUserData :{},
         perPage: 5,
         currentPage: 1,
         isLoading : true,
@@ -140,14 +140,17 @@
     },
   
     methods: {
-        deleteSong(){
+        getAllUser(){
+          
+        },
+        deleteUser(){
 
         },
-        updateSong(){
+        updateUser(){
 
         },
-        showPopup(song) {
-        this.updateSongData = song;
+        showPopup(User) {
+        this.updateUserData = User;
         },
         createArtist(){
 
@@ -157,10 +160,10 @@
       paginatedData() {
         const start = (this.currentPage - 1) * this.perPage;
         const end = start + this.perPage;
-        return this.songData.slice(start, end);
+        return this.UserData.slice(start, end);
       },
       totalPages() {
-        return Math.ceil(this.songData.length / this.perPage);
+        return Math.ceil(this.UserData.length / this.perPage);
       },
     },
   };

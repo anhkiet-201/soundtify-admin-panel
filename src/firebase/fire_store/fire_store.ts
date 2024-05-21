@@ -102,7 +102,7 @@ export const totalSong = async (): Promise<number> => {
     return snapshot.docs.length
 }
 
-export const songStatistical = async () => {
+export const songStatistical = async ():Promise<SongStatis[]> => {
     let songs = (
         await getDocs(
             songCollection
@@ -123,6 +123,6 @@ export const songStatistical = async () => {
             numofSong: value
         });
     });
-    console.log(listSongStatis);
+    return listSongStatis
 }
 
