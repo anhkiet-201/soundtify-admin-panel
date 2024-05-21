@@ -13,21 +13,15 @@
         </div>
       </div>
     </div>
+    <!-- <artistManagerment></artistManagerment> -->
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import formMd from './components/form/form-md.vue';
 import tableNormal from './components/table/table-normal.vue';
-import sideBar from './components/sidebar/sidebar-md.vue'
-import formMd from './components/form/form-md.vue'
-export default {
-  name: 'masterPage',
-  components: {
-    sideBar,
-    formMd,
-    tableNormal,
-  }
-}
+import sideBar from './components/sidebar/sidebar-md.vue';
+// import artistManagerment from "./View/artists_managerment.vue";
 </script>
 
 <style scoped></style>

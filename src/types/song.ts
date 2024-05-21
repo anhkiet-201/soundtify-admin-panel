@@ -12,7 +12,8 @@ export type Song = {
     description?: string,
     listenCount: number,
     lyric?: string,
-    otherArtist: string[]
+    otherArtist: string[],
+    tags: string[],
 }
 
 export const createSong = (
@@ -22,6 +23,7 @@ export const createSong = (
     url: string,
     token: string,
     otherArtist: string[],
+    tags: string[],
     cover?: string,
     description?: string,
     lyric?: string,
@@ -38,6 +40,7 @@ export const createSong = (
         description: description,
         listenCount: 0,
         lyric: lyric,
-        otherArtist: otherArtist
+        otherArtist: otherArtist,
+        tags: tags
     }
 }

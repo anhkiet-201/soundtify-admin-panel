@@ -1,31 +1,32 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { apiRepository } from '../../di/injector';
-import { Song } from '../../types/song';
 import { millisecondsToHms } from '../../common/utils/date_time'
-const songName = ref("")
-const listSong = ref<Song[]>([])
-apiRepository.getAllSong().then((value) => (listSong.value = value))
+import { NativeSong } from '../../types/native_song';
+const listSong = ref<NativeSong[]>([])
+apiRepository.getAllSong().then((value) => {
+    listSong.value = value;
+})
 </script>
 <template>
     <table class="table table-hover mx-2">
         <thead>
             <tr>
-                <th scope="col">Song ID</th>
                 <th scope="col">Song name</th>
+                <th scope="col">Artist</th>
                 <th scope="col">Song duration</th>
                 <th scope="col">Upload time</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Listen count</th>
                 <th scope="col">Handle</th>
             </tr>
         </thead>
         <tbody>
-            <tr v-bind:key="song" v-for="song in listSong">
-                <th scope="row">{{ song.id}}</th>
-                <td>{{song.name}}</td>
-                <td>{{ millisecondsToHms(song.duration)}}</td>
-                <td>{{new Date(song.uploadTime).toDateString()}}</td>
-                <td>@mdo</td>
+            <tr :key="navtiveSong.song.id" v-for="navtiveSong in listSong">
+                <th scope="row">{{ navtiveSong.song.name }}</th>
+                <td>{{ navtiveSong.artist.name }}</td>
+                <td>{{ millisecondsToHms(navtiveSong.song.duration) }}</td>
+                <td>{{ new Date(navtiveSong.song.uploadTime).toDateString() }}</td>
+                <td>{{ navtiveSong.song.listenCount }}</td>
                 <td>
                     <div class="d-flex">
                         <button type="button" class="btn-primary btn-sm mx-1"><span class="material-symbols-rounded">
