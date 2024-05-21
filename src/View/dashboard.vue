@@ -1,5 +1,11 @@
 <template>
-  <div class=" pt-2">
+  <div class="container-fuild">
+    <h1>Dashboard</h1>
+    <div class="d-flex justify-content-around">
+        <div class="col-5"></div>
+        <div class="col-5"></div>
+    </div>
+    <div class=" pt-2">
       <div class="col-lg-12 border border-3 custom-rounded">
         <span class="fs-5 p-2" >Revenue by month</span>
         <canvas id="revenueChart" height="70"></canvas>
@@ -9,6 +15,8 @@
       <div class="col-lg-6"><canvas id="bar"></canvas></div>
     <div class="col-lg-6"><canvas id="pie"></canvas></div>
     </div>
+  </div>
+ 
 </template>
 
 <script>
