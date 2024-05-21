@@ -1,10 +1,11 @@
-import { count, doc, getDoc, getDocs, orderBy, query, setDoc, updateDoc, where } from "firebase/firestore"
+import { doc, getDoc, getDocs, orderBy, query, setDoc, updateDoc, where } from "firebase/firestore"
 import { Song } from "../../types/song"
-import { artCollection, songCollection, userCollection } from "./fire_store_path"
+import {reportCollection, artCollection, songCollection, userCollection} from "./fire_store_path"
 import { Artist } from "../../types/artist"
 import { NativeSong } from "../../types/native_song"
-import { fireStore } from "../firebase"
 import { SongStatis } from "../../types/song_statis"
+import {ReportFlag} from "../../types/report_flag.ts";
+import {User} from "../../types/user.ts";
 
 export const registerAsArtist = async (artist: Artist) => {
     const docData = doc(
@@ -126,3 +127,63 @@ export const songStatistical = async () => {
     console.log(listSongStatis);
 }
 
+export const getAllReport = async (): Promise<Report[]> => {
+    let reports = (
+        await getDocs(
+            reportCollection
+        )
+    ).docs.map((e) => (e.data() as unknown as ReportFlag)).filter((e) => (e != null));
+    let reportOveride = new Map<string, Report>();
+    for (const report of reports) {
+        /// get Song
+        let song = (
+            await getDoc(
+                doc(
+                    songCollection,
+                    report.songId
+                )
+            )
+        ).data() as Song;
+        /// get User
+        let user = (
+            await getDoc(
+                doc(
+                    userCollection,
+                    report.uid
+                )
+            )
+        ).data() as User;
+        /// convert
+        let previous = reportOveride.get(report.songId);
+        reportOveride.set(
+            report.songId,
+            {
+                song: song,
+                numOfreport: (previous?.numOfreport ?? 0) + 1,
+                reportFlags: [
+                    ...(previous?.reportFlags ?? []),
+                    {
+                        id: report.id,
+                        user: user,
+                        reason: report.reason
+                    }
+                ]
+            }
+        )
+    }
+    ///
+    let listReport: Report[] = [];
+    reportOveride.forEach((value) => (listReport.push(value)));
+    return listReport.sort((a, b) => (a.numOfreport - b.numOfreport));
+}
+type ReportFlagNative = {
+    id: string,
+    user: User,
+    reason: string,
+}
+
+type Report = {
+    song: Song,
+    numOfreport: number,
+    reportFlags: ReportFlagNative[]
+}
