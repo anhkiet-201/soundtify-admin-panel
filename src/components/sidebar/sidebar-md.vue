@@ -62,6 +62,9 @@
 </template>
 
 <script setup lang="ts">
+import { songStatistical } from '../../firebase/fire_store/fire_store';
+
+songStatistical();
 </script>
 
 <style>
