@@ -82,6 +82,30 @@ export const getAllArtist = async (filter?: string): Promise<Artist[]> => {
     return snapshot.map((e) => e.data() as unknown as Artist).filter((e) => (e != null));
 }
 
+export const getAllUser = async (filter?: string): Promise<User[]> => {
+    let snapshot = (
+        await getDocs(
+            query(
+                userCollection,
+                where(
+                    "name",
+                    ">=",
+                    filter ?? ""
+                ),
+                where(
+                    "name",
+                    "<=",
+                    `${filter ?? ""}\uf8ff`
+                ),
+                orderBy(
+                    "name",
+                    "desc"
+                )
+            )
+        )
+    ).docs
+    return snapshot.map((e) => e.data() as unknown as User).filter((e) => (e != null));
+}
 export const totalArtist = async (): Promise<number> => {
     let snapshot = await getDocs(
         artCollection
@@ -174,15 +198,17 @@ export const getAllReport = async (): Promise<Report[]> => {
     ///
     let listReport: Report[] = [];
     reportOveride.forEach((value) => (listReport.push(value)));
+    console.log(listReport);
+    
     return listReport.sort((a, b) => (a.numOfreport - b.numOfreport));
 }
-type ReportFlagNative = {
+export type ReportFlagNative = {
     id: string,
     user: User,
     reason: string,
 }
 
-type Report = {
+export type Report = {
     song: Song,
     numOfreport: number,
     reportFlags: ReportFlagNative[]

@@ -6,23 +6,9 @@
     </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <router-link :to="'/'">
+        <router-link :to="'/dashboard'">
         <button class="btn btn-toggle align-items-center rounded text-white collapsed" >
           Dashboard
-        </button>
-      </router-link>
-      </li>
-      <li class="mb-1">
-        <router-link :to="'/user'">
-        <button class="btn btn-toggle align-items-center rounded text-white collapsed" >
-          Users managerment
-        </button>
-      </router-link>
-      </li>
-      <li class="mb-1">
-        <router-link :to="'/artist'">
-        <button class="btn btn-toggle align-items-center rounded text-white collapsed" >
-          Artist managerment
         </button>
       </router-link>
       </li>
@@ -30,6 +16,13 @@
         <router-link :to="'/track'">
         <button class="btn btn-toggle align-items-center rounded text-white collapsed" >
           track managerment
+        </button>
+      </router-link>
+      </li>
+      <li class="mb-1">
+        <router-link :to="'/report'">
+        <button class="btn btn-toggle align-items-center rounded text-white collapsed" >
+          report managerment
         </button>
       </router-link>
       </li>

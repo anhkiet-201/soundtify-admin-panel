@@ -2,22 +2,24 @@
   <div class="container-fuild">
     <h1>Dashboard</h1>
     <div class="d-flex justify-content-around">
-        <div class="col-5 bg-success ">{{ user }}</div>
-        <div class="col-5 bg-danger">{{ artist }}</div>
+        <div class="col-4 border  btn "><h4> User Total : {{ user }}</h4></div>
+        <div class="col-4 border  btn"><h4> Artist Total : {{ artist }}</h4></div>
+        <div class="col-4 border  btn"><h4> Song Total : {{ songTotal }}</h4></div>
     </div>
     <div class=" pt-2">
-      <div class="col-lg-12 border border-3 custom-rounded">
-    {{ songTotal }}
+      <div class="p-2">
+        <a class="btn col-12 bg-success text-white fs-2 " href="https://dashboard.stripe.com/login?redirect=%2Ftest%2Fdashboard">Blance</a>
       </div>
     </div>
     <div class="d-flex">
-      <div class="col-lg-6"><canvas id="bar"></canvas></div>
-    <div class="col-lg-6"><canvas id="pie"></canvas></div>
+      <div class="col-lg-12"><canvas id="bar"></canvas></div>
     </div>
   </div>
  
 </template>
 <script>
+import { totalUser , totalSong , totalArtist , songStatistical } from '../firebase/fire_store/fire_store';
+import Chart from 'chart.js/auto'
 export default {
     data(){
         return {
@@ -43,7 +45,7 @@ export default {
        this.user = await totalUser();
        this.songData = await songStatistical();
        this.artist = await totalArtist();
-       this.songTotal = await totalSong()
+       this.songTotal = await totalSong();
       },
     // lineChart() {
     //   const ctx = document.getElementById("revenueChart").getContext("2d");
