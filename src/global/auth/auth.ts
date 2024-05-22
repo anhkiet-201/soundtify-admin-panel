@@ -15,14 +15,19 @@ export const useAuthStore = defineStore('auth', {
     },
     actions: {
         async initialize() {
-            onAuthStateChanged(fireAuth, () => {
-                this.sync();
+            onAuthStateChanged(fireAuth, async () => {
+                await this.sync();
+                if(this.isLogined) {
+                    this.router.push({ name: 'dashboard'});
+                } else {
+                    this.router.push({name: 'login'});
+                }
             })
         },
         async login(email: string, password: string) {
             try {
                 await signInWithEmailAndPassword(fireAuth, email, password);
-            } catch(error){
+            } catch (error) {
                 /// TODO: Display login error
                 console.log("Error", error);
             }
@@ -33,7 +38,6 @@ export const useAuthStore = defineStore('auth', {
             } catch (error) {
                 /// TODO: Display login error
                 console.log("Error", error);
-
             }
         },
         async sync() {
@@ -41,18 +45,19 @@ export const useAuthStore = defineStore('auth', {
                 let user = fireAuth.currentUser;
                 if (user == null) {
                     this.user = null;
-                    return;
+                } else {
+                    this.user = await getUserById(user.uid);
                 }
-                this.user = await getUserById(user.uid);
-                if(this.user?.isAdmin ?? false) {
+                if (this.user?.isAdmin ?? false) {
                     throw "Account access is not authorized";
                 }
-            } catch(error) {
+                
+            } catch (error) {
                 /// TODO: Display login error
                 this.logout();
                 console.log("Error", error);
             }
-        }
+        },
     },
 })
 

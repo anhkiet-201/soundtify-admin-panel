@@ -22,7 +22,10 @@
 import formMd from './components/form/form-md.vue';
 import tableNormal from './components/table/table-normal.vue';
 import sideBar from './components/sidebar/sidebar-md.vue';
+import { useAuthStore } from './global/auth/auth';
 // import artistManagerment from "./View/artists_managerment.vue";
+const auth = useAuthStore();
+auth.initialize();
 </script>
 
 <style scoped></style>

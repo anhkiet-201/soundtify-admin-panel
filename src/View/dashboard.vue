@@ -19,7 +19,13 @@
  
 </template>
 
-<script>
+<script setup lang="ts">
+import { useAuthStore } from "../global/auth/auth";
+const auth = useAuthStore();
+</script>
+
+
+<!-- <script>
 export default {
     data(){
         return {
@@ -121,7 +127,7 @@ export default {
     },
 
 }
-</script>
+</script> -->
 
 <style>
 
