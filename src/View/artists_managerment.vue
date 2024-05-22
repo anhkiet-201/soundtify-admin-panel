@@ -3,16 +3,16 @@
       <h1 class="ms-auto">Quản lý nghệ sĩ</h1>
 
         <button type="button" class="btn btn-success" @click="createArtist">Create</button>
-      <table class="table text-white">
+      <table class="table text-dark">
         <thead>
           <tr>
             <th scope="col-1">#</th>
             <th scope="col-1">Name</th>
-            <th scope="col-1">artist</th>
             <th scope="col-1">thumbnail</th>
             <th scope="col-2 ">description</th>
-            <th scope="col-1">duration</th>
-            <th scope="col-1">viewer</th>
+            <th scope="col-1">follower</th>
+            <th scope="col-1">following</th>
+            <th scope="col-1">Listen total</th>
             <th scope="col-3">action</th>
           </tr>
         </thead>
@@ -20,13 +20,13 @@
           <tr :key="artist.id" v-for="artist in paginatedData">
             <th>{{ artist.id.length }}</th>
             <td>{{ artist.name }}</td>
-            <td>{{ artist.artistId }}</td>
             <td>
-              <img :src="artist.cover" alt="thumbnail-artist" class="custom-images" />
+              <img :src="artist.thumbnail" alt="thumbnail-artist" class="custom-images" />
             </td>
             <td class="col-2">{{ artist.description }}</td>
-            <td>{{ artist.duration }}</td>
-            <td>{{ artist.listenCount }}</td>
+            <td>{{ artist.follower }}</td>
+            <td>{{ artist.following }}</td>
+            <td>{{ artist.totalListenCount }}</td>
             <td>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
@@ -125,6 +125,7 @@
   </template>
   
   <script>
+import { getAllArtist } from '../firebase/fire_store/fire_store';
 
   export default {
     name: "tracked-managerment",
@@ -139,9 +140,15 @@
       };
     },
     created() {
+      this.allArtist();
     },
   
     methods: {
+        async allArtist(){
+        this.isLoading = true;
+        this.artistData = await getAllArtist();
+        this.isLoading = false;
+        },
         deleteartist(){
 
         },
