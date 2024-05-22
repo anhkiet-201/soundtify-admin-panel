@@ -28,16 +28,10 @@
       </li>
       <li class="border-top my-3"></li>
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded text-white collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-          Account
+        <button class="btn btn-danger align-items-center rounded text-white collapsed" @click="FunctionLogout">
+          Logout
         </button>
         <div class="collapse" id="account-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded text-white">New...</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Profile</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Settings</a></li>
-            <li><a href="#" class="link-dark rounded text-white">Sign out</a></li>
-          </ul>
         </div>
       </li>
     </ul>
@@ -46,7 +40,15 @@
 
 <script setup lang="ts">
 import { songStatistical } from '../../firebase/fire_store/fire_store';
+import { useAuthStore } from '../../global/auth/auth'
+const auth = useAuthStore();
 
+const FunctionLogout = () =>{
+  console.log("ấidba");
+  
+  auth.logout();
+  
+}
 songStatistical();
 </script>
 

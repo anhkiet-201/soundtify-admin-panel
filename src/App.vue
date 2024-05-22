@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid d-flex p-0 m-0">
-    <div class="col-lg-2">
+    <div class="col-lg-2" v-if="auth.isLogined">
       <side-bar style="height: 100vh;"></side-bar>
     </div>
-    <div class="col-10">
+    <div :class="`col-${auth.isLogined ? '10' : '12' }`">
       <router-view/>
     </div>
    

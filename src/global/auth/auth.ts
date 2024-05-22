@@ -35,6 +35,7 @@ export const useAuthStore = defineStore('auth', {
         async logout() {
             try {
                 await signOut(fireAuth);
+                this.router.push({name : 'login'})
             } catch (error) {
                 /// TODO: Display login error
                 console.log("Error", error);
@@ -48,7 +49,7 @@ export const useAuthStore = defineStore('auth', {
                 } else {
                     this.user = await getUserById(user.uid);
                 }
-                if (this.user?.isAdmin ?? false) {
+                if (!(this.user?.isAdmin ?? false)) {
                     throw "Account access is not authorized";
                 }
                 

@@ -1,5 +1,5 @@
 import { createApp, markRaw } from 'vue'
-import './style.css'
+import './assets/css/index.css'
 import App from './App.vue'
 import { pinia } from './di/injector'
 import router from './router/index'
