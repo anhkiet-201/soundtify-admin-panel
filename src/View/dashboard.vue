@@ -17,12 +17,7 @@
   </div>
  
 </template>
-
 <script>
-import { totalArtist } from '../firebase/fire_store/fire_store';
-import { totalSong } from '../firebase/fire_store/fire_store';
-import { songStatistical, totalUser } from '../firebase/fire_store/fire_store'
-import Chart from 'chart.js/auto';
 export default {
     data(){
         return {
@@ -140,7 +135,7 @@ export default {
     },
 
 }
-</script>
+</script> -->
 
 <style>
 

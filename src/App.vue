@@ -13,7 +13,10 @@
 <script setup lang="ts">
 
 import sideBar from './components/sidebar/sidebar-md.vue';
+import { useAuthStore } from './global/auth/auth';
 // import artistManagerment from "./View/artists_managerment.vue";
+const auth = useAuthStore();
+auth.initialize();
 </script>
 
 <style scoped></style>
