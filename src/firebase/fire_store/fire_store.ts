@@ -1,4 +1,4 @@
-import { doc, getDoc, getDocs, orderBy, query, setDoc, updateDoc, where } from "firebase/firestore"
+import { deleteDoc, doc, getDoc, getDocs, orderBy, query, setDoc, updateDoc, where } from "firebase/firestore"
 import { Song } from "../../types/song"
 import {reportCollection, artCollection, songCollection, userCollection} from "./fire_store_path"
 import { Artist } from "../../types/artist"
@@ -186,4 +186,47 @@ type Report = {
     song: Song,
     numOfreport: number,
     reportFlags: ReportFlagNative[]
+}
+
+export const deleteSongById = async (songId: string) => {
+    await deleteDoc(
+        doc(
+            songCollection,
+            songId,
+        )
+    )
+}
+
+export const deleteReportedSong = async (report: Report) => {
+    await deleteSongById(report.song.id);
+    /// remove report
+    for (const reportFlag of report.reportFlags) {
+        deleteDoc(
+            doc(
+                reportCollection,
+                reportFlag.id
+            )
+        )
+    }
+}
+
+export const deleteArtistById = async (artistId: string) => {
+    await deleteDoc(
+        doc(
+            artCollection,
+            artistId
+        )
+    )
+}
+
+export const getUserById = async (uid: string) : Promise<User | null> => {
+    let user = (
+        await getDoc(
+            doc(
+                userCollection,
+                uid
+            )
+        )
+    ).data() as unknown as User;
+    return user
 }

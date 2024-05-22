@@ -6,5 +6,7 @@ export type User = {
     
     name:string,
     
-    uuid: string
+    uuid: string,
+
+    isAdmin?: boolean 
 }
